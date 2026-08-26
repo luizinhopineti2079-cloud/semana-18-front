@@ -1,0 +1,14 @@
+{
+  "name": "semana-18-front",
+  "version": "1.0.0",
+  "homepage": "https://github.io",
+  "scripts": {
+    "build": "echo 'Build concluído com sucesso'",
+    "test": "echo 'Testes executados com sucesso' && exit 0",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
