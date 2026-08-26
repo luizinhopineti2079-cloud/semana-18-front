@@ -14,24 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Passo 1: Baixa o código do repositório
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
-    # Etapa 1: Instalação de dependências
-    - name: Install Dependencies
-      run: npm install
-
-    # Etapa 2: Deploy direto usando a biblioteca instalada no seu package.json
+    # Passo 2: Faz o Deploy usando uma Action pronta e segura (não usa comandos npm)
     - name: Deploy to GitHub Pages
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@://github.com"
-        npx gh-pages -d . --force
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: . # Copia os arquivos da raiz do projeto
+        branch: gh-pages # Envia para a branch de publicação
