@@ -6,7 +6,7 @@
     "build": "echo 'Simulando build' && mkdir -p dist && echo '<h1>Meu App</h1>' > dist/index.html",
     "test": "echo 'Testes executados com sucesso' && exit 0",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d ."
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
