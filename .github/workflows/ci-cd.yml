@@ -31,11 +31,13 @@ jobs:
     - name: Build Application
       run: npm run build
 
+        # Etapa 4: Deploy automático no GitHub Pages (Atualizado)
     - name: Deploy to GitHub Pages
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@://github.com"
-        npm run deploy
+        npx gh-pages -d .
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
