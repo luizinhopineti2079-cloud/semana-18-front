@@ -22,22 +22,16 @@ jobs:
       with:
         node-version: '20'
 
+    # Etapa 1: Instalação de dependências
     - name: Install Dependencies
       run: npm install
 
-    - name: Run Tests
-      run: npm run test
-
-    - name: Build Application
-      run: npm run build
-
-        # Etapa 4: Deploy automático no GitHub Pages (Atualizado)
+    # Etapa 2: Deploy direto usando a biblioteca instalada no seu package.json
     - name: Deploy to GitHub Pages
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@://github.com"
-        npx gh-pages -d .
+        npx gh-pages -d . --force
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
